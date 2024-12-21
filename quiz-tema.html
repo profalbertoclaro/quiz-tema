@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: História do Rotary Club de Santos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #ff6347;
+        }
+        button {
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff4500;
+        }
+        .hidden {
+            display: none;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        .final-message {
+            color: #2e8b57;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz: História do Rotary Club de Santos</h1>
+        <p>Teste seus conhecimentos sobre o Rotary Club de Santos!</p>
+        <div id="game">
+            <!-- Pergunta 1 -->
+            <div id="question1" class="question">
+                <p>1. Em que ano o Rotary Club de Santos foi fundado?</p>
+                <button onclick="checkAnswer(1, '1927')">1927</button>
+                <button onclick="checkAnswer(1, '1931')">1931</button>
+                <button onclick="checkAnswer(1, '1919')">1919</button>
+            </div>
+            <!-- Pergunta 2 -->
+            <div id="question2" class="question hidden">
+                <p>2. Qual foi o primeiro projeto social do clube?</p>
+                <button onclick="checkAnswer(2, 'Casa da Esperança')">Casa da Esperança</button>
+                <button onclick="checkAnswer(2, 'Projeto Preserve o Planeta Terra')">Projeto Preserve o Planeta Terra</button>
+                <button onclick="checkAnswer(2, 'Construção de Escolas')">Construção de Escolas</button>
+            </div>
+            <!-- Pergunta 3 -->
+            <div id="question3" class="question hidden">
+                <p>3. Quantos presidentes o clube teve até agora?</p>
+                <button onclick="checkAnswer(3, '50')">50</button>
+                <button onclick="checkAnswer(3, '75')">75</button>
+                <button onclick="checkAnswer(3, '100')">100</button>
+            </div>
+            <!-- Mensagem final -->
+            <div id="finalMessage" class="hidden">
+                <p class="final-message">Parabéns! Você completou o quiz!</p>
+                <p id="score"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+
+        function checkAnswer(question, correctAnswer) {
+            const answers = {
+                1: '1927',
+                2: 'Casa da Esperança',
+                3: '100'
+            };
+
+            if (correctAnswer === answers[question]) {
+                score++;
+                alert('Resposta correta!');
+            } else {
+                alert('Resposta errada!');
+            }
+
+            document.getElementById(`question${question}`).classList.add('hidden');
+            const nextQuestion = question + 1;
+            if (document.getElementById(`question${nextQuestion}`)) {
+                document.getElementById(`question${nextQuestion}`).classList.remove('hidden');
+            } else {
+                document.getElementById('finalMessage').classList.remove('hidden');
+                document.getElementById('score').innerText = `Você acertou ${score} de 3 perguntas!`;
+            }
+        }
+    </script>
+</body>
+</html>
